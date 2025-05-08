@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import './PortfolioContent.css';
 
 const PortfolioContent = ({
@@ -8,8 +9,29 @@ const PortfolioContent = ({
   setShowWelcome
 }) => {
   const [visible, setVisible] = useState(false);
-  const [content, setContent] = useState(null);
+  const [state, handleSubmit] = useForm("xvgarvqd");
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const contentRef = useRef(null);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    if (state.succeeded) {
+      formRef.current?.reset();
+      setShowSuccessMessage(true);
+      setFormSubmitted(true);
+      const timer = setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [state.succeeded]);
+
+  useEffect(() => {
+    if (activeSection !== 'contact') {
+      setShowSuccessMessage(false);
+    }
+  }, [activeSection]);
 
   const sectionContent = {
     about: (
@@ -51,87 +73,13 @@ const PortfolioContent = ({
       <>
         <div className="resume-header">
           <h2>Resume</h2>
-          <button className="download-resume">Download Full Resume (PDF)</button>
-        </div>
-
-        <div className="resume-section">
-          <h3>Skills</h3>
-          <div className="skills-grid">
-            <div className="skill-category">
-              <h4>Programming Languages</h4>
-              <ul>
-                <li>Python</li>
-                <li>Java</li>
-                <li>C / C++</li>
-                <li>JavaScript</li>
-                <li>R</li>
-              </ul>
-            </div>
-            <div className="skill-category">
-              <h4>Libraries & Tools</h4>
-              <ul>
-                <li>PyTorch / TensorFlow</li>
-                <li>Scikit-learn / NumPy / Pandas</li>
-                <li>Matplotlib / Seaborn</li>
-                <li>Jupyter Notebooks</li>
-                <li>OpenAI Gym API</li>
-              </ul>
-            </div>
-            <div className="skill-category">
-              <h4>Tech & Platforms</h4>
-              <ul>
-                <li>PostgreSQL</li>
-                <li>Git / GitHub / VSCode</li>
-                <li>Microsoft Azure</li>
-                <li>Jira / UML</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="resume-section">
-          <h3>Experience</h3>
-          <div className="experience-item">
-            <div className="experience-header">
-              <h4>Returns Associate</h4>
-              <span className="experience-date">Oct 2020 – Jul 2021</span>
-            </div>
-            <div className="experience-company">HOM Furniture, Coon Rapids, MN</div>
-            <p>Trained and mentored team members on return process best practices, improving workflow efficiency and supporting operations across departments.</p>
-          </div>
-        </div>
-
-        <div className="resume-section">
-          <h3>Projects</h3>
-          <div className="experience-item">
-            <div className="experience-header">
-              <h4>Rocket League Reinforcement Learning Agents</h4>
-            </div>
-            <p>Trained PPO agents in Rocket League simulations over 1B+ steps, using custom rewards and tracking via Weights & Biases to optimize performance.</p>
-          </div>
-          <div className="experience-item">
-            <div className="experience-header">
-              <h4>Esports Player Performance Prediction</h4>
-            </div>
-            <p>Built a scalable system using Ballchasing API, trained SVM and Random Forest models, and created visualizations to support professional team scouting and strategy.</p>
-          </div>
-          <div className="experience-item">
-            <div className="experience-header">
-              <h4>Scrimbot - Esports Discord Bot</h4>
-            </div>
-            <p>Developed a Discord bot for 35K+ users with real-time matchmaking via WebSockets and optimized SQL handling for performance and uptime.</p>
-          </div>
-        </div>
-
-        <div className="resume-section">
-          <h3>Leadership</h3>
-          <div className="experience-item">
-            <div className="experience-header">
-              <h4>Club President & Varsity Captain</h4>
-            </div>
-            <div className="experience-company">University of Minnesota Rocket League Esports Club</div>
-            <p>Oversee a 3,000+ member club, lead varsity team strategy and training, and secured $20,000 in fundraising to support club operations and growth.</p>
-          </div>
+          <a
+            href="/assets/resume.pdf"
+            download
+            className="primary-button"
+          >
+            Download Full Resume (PDF)
+          </a>
         </div>
 
         <div className="resume-section">
@@ -142,7 +90,69 @@ const PortfolioContent = ({
               <span className="education-institution">University of Minnesota, College of Science and Engineering</span>
               <span className="education-date">Expected May 2025 · GPA: 3.6</span>
             </div>
-            <p>Relevant Coursework: Machine Learning, AI, Data Science, Software Engineering, Data Structures, Computer Architecture</p>
+            <p>Relevant Coursework: Machine Learning, Artificial Intelligence, Data Science, Software Engineering, Data Structures and Algorithms, Computer Architecture</p>
+          </div>
+        </div>
+
+        <div className="resume-section">
+          <h3>Skills</h3>
+          <div className="skills-grid">
+            <div className="skill-category">
+              <h4>Programming & Technical</h4>
+              <ul>
+                <li>Python, Java, C, C++, JavaScript, R, Assembly</li>
+                <li>Machine Learning · Data Science · Reinforcement Learning</li>
+              </ul>
+            </div>
+            <div className="skill-category">
+              <h4>Tools & Technologies</h4>
+              <ul>
+                <li>PyTorch, TensorFlow, Scikit-learn, NumPy, Pandas</li>
+                <li>PostgreSQL, Git, GitHub, VSCode, Jupyter Notebooks</li>
+                <li>OpenAI Gym API, Discord API, Microsoft Azure, Jira, UML</li>
+              </ul>
+            </div>
+            <div className="skill-category">
+              <h4>Soft Skills</h4>
+              <ul>
+                <li>Leadership & Team Coordination</li>
+                <li>Strategic Thinking & Problem Solving</li>
+                <li>Technical Communication</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="resume-section">
+          <h3>Projects</h3>
+          <div className="experience-item">
+            <div className="experience-header">
+              <h4>Rocket League Reinforcement Learning Agents</h4>
+            </div>
+            <p>Engineered and trained high-performance RL agents using PPO with custom reward shaping, simulating over 1B training steps. Used Weights & Biases for experiment tracking and model optimization.</p>
+          </div>
+          <div className="experience-item">
+            <div className="experience-header">
+              <h4>Esports Player Performance Prediction</h4>
+            </div>
+            <p>Built a scalable replay analysis system using the Ballchasing API. Trained SVM, Logistic Regression, and Random Forest models, visualizing performance metrics for professional roster scouting and team strategy optimization.</p>
+          </div>
+          <div className="experience-item">
+            <div className="experience-header">
+              <h4>Scrimbot - Esports Discord Bot</h4>
+            </div>
+            <p>Developed a Discord bot for over 35,000 users with real-time scrim scheduling via WebSockets. Optimized SQL queries and refined UI with Markdown for improved UX.</p>
+          </div>
+        </div>
+
+        <div className="resume-section">
+          <h3>Leadership</h3>
+          <div className="experience-item">
+            <div className="experience-header">
+              <h4>Club President & Varsity Captain</h4>
+            </div>
+            <div className="experience-company">University of Minnesota Rocket League Esports Club</div>
+            <p>Led 3,000+ member club, managing team creation, events, and tournament logistics. Appointed varsity captain by Athletics, leading training and in-game strategy. Secured $20,000 in funding.</p>
           </div>
         </div>
       </>
@@ -153,62 +163,70 @@ const PortfolioContent = ({
         <p>Whether you're interested in collaboration, have a question, or just want to connect — I'd love to hear from you.</p>
 
         <div className="contact-methods">
-          <div className="contact-item">
+          <a href="mailto:jaksoncoffin@gmail.com" className="contact-item" target="_blank" rel="noopener noreferrer">
             <div className="contact-icon">✉️</div>
             <div className="contact-info">
               <h3>Email</h3>
               <p>jaksoncoffin@gmail.com</p>
             </div>
-          </div>
-          <div className="contact-item">
+          </a>
+          <a href="https://www.linkedin.com/in/jakson-coffin" className="contact-item" target="_blank" rel="noopener noreferrer">
             <div className="contact-icon">💼</div>
             <div className="contact-info">
               <h3>LinkedIn</h3>
-              <p>linkedin.com/in/jakson-coffin</p>
+              <p>www.linkedin.com/in/jakson-coffin</p>
             </div>
-          </div>
-          <div className="contact-item">
+          </a>
+          <a href="https://github.com/jaksoncoffin" className="contact-item" target="_blank" rel="noopener noreferrer">
             <div className="contact-icon">🐙</div>
             <div className="contact-info">
               <h3>GitHub</h3>
               <p>github.com/jaksoncoffin</p>
             </div>
-          </div>
+          </a>
         </div>
 
-        <div className="contact-form">
-          <h3>Send me a message</h3>
-          <form>
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input type="text" id="name" placeholder="Your name" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" placeholder="Your email" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea id="message" rows="5" placeholder="Your message"></textarea>
-            </div>
-            <button type="submit" className="submit-button">Send Message</button>
-          </form>
-        </div>
+        {formSubmitted ? (
+          <div className={`form-success-animated ${showSuccessMessage ? '' : 'form-success-static'}`}>
+            ✦ Thank you! Your message has been sent. ✦
+          </div>
+        ) : (
+          <div className="contact-form">
+            <h3>Send me a message</h3>
+            <form ref={formRef} onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input id="name" type="text" name="name" placeholder="Your name" required />
+                <ValidationError prefix="Name" field="name" errors={state.errors} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input id="email" type="email" name="email" placeholder="Your email" required />
+                <ValidationError prefix="Email" field="email" errors={state.errors} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Your message" required />
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
+              </div>
+              <button
+                type="submit"
+                className="primary-button"
+                disabled={state.submitting}
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        )}
       </>
     )
   };
 
   useEffect(() => {
-    if (activeSection) {
-      setContent(sectionContent[activeSection]);
-      setVisible(true);
-    } else {
-      setVisible(false);
-      setContent(null);
-    }
+    setVisible(!!activeSection);
   }, [activeSection]);
 
-  // reset scroll on each open
   useEffect(() => {
     if (contentRef.current) {
       const sc = contentRef.current.querySelector('.section-content');
@@ -216,7 +234,6 @@ const PortfolioContent = ({
     }
   }, [activeSection]);
 
-  // dismiss welcome on first click anywhere
   useEffect(() => {
     const handleClick = () => {
       if (showWelcome) setShowWelcome(false);
@@ -225,7 +242,6 @@ const PortfolioContent = ({
     return () => window.removeEventListener('click', handleClick);
   }, [showWelcome, setShowWelcome]);
 
-  // block constellation clicks & blur while welcome
   useEffect(() => {
     document.body.classList.toggle('block-constellations', showWelcome);
   }, [showWelcome]);
@@ -253,7 +269,7 @@ const PortfolioContent = ({
               >
                 <span className="star-x">✦</span>
               </button>
-              {content}
+              {sectionContent[activeSection]}
             </div>
           </div>
         )}

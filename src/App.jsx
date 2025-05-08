@@ -62,24 +62,19 @@ function App() {
           />
         </div>
       )}
-
       {!loading && (
         <div className="main-content">
           <StarFieldBackground showGalaxy={showGalaxy} />
-
-          {/* only show nav once welcome is gone */}
           {!showWelcome && (
             <TopNavBar
               onSelect={handleSectionSelect}
               activeSection={activeSection}
             />
           )}
-
           <ConstellationNavigation
             onSectionSelect={handleSectionSelect}
             activeSection={activeSection}
           />
-
           <PortfolioContent
             activeSection={activeSection}
             onClose={handleCloseSection}

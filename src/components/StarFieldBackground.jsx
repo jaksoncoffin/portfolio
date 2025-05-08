@@ -43,9 +43,9 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
         const r = Math.pow(Math.random(), 0.6) * radius;
         const angle = Math.random() * 2 * Math.PI;
         const speed = 0.00025 + (radius - r) * 0.0000015;
-
         const t = r / radius;
         let color;
+
         if (t < 0.3) {
           color = `rgba(255, 255, 200, ALPHA)`;
         } else if (t < 0.7) {
@@ -55,7 +55,7 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
         }
 
         galaxyStarsRef.current.push({
-          initialR: r, // use fixed radius
+          initialR: r,
           angle,
           centerX,
           centerY,
@@ -73,7 +73,6 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Background stars
       starsRef.current.forEach(star => {
         star.opacity += star.twinkleSpeed * star.twinkleDirection;
         if (star.opacity <= 0.2 || star.opacity >= 1) {
@@ -86,20 +85,15 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
         ctx.fill();
       });
 
-      // Only draw galaxy if showGalaxy prop is true
       if (showGalaxy) {
-        // Galaxy stars
         galaxyStarsRef.current.forEach(star => {
           const rNorm = star.initialR / 150;
           const speedMultiplier = 1 + (1 - rNorm) * 0.8;
           star.angle += star.speed * speedMultiplier;
-
           const x = star.initialR * Math.cos(star.angle);
           const y = star.initialR * Math.sin(star.angle) * star.flattenY;
-
           const px = star.centerX + x;
           const py = star.centerY + y;
-
           const alpha = 1 - star.initialR / 150;
           const finalColor = star.color.replace('ALPHA', Math.min(alpha * 0.6, 0.6).toFixed(3));
 
@@ -109,11 +103,9 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
           ctx.fill();
         });
 
-        // Black hole effects
         const core = galaxyStarsRef.current[0];
-
-        // Ambient core glow
         const coreGlow = ctx.createRadialGradient(core.centerX, core.centerY, 0, core.centerX, core.centerY, 20);
+
         coreGlow.addColorStop(0, 'rgba(255, 255, 220, 0.15)');
         coreGlow.addColorStop(1, 'rgba(255, 255, 220, 0)');
         ctx.fillStyle = coreGlow;
@@ -121,7 +113,6 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
         ctx.arc(core.centerX, core.centerY, 20, 0, 2 * Math.PI);
         ctx.fill();
 
-        // Orange radial glow
         const glowRadius = 7.5;
         const glowGradient = ctx.createRadialGradient(
           core.centerX, core.centerY, 5.5,
@@ -134,14 +125,12 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
         ctx.arc(core.centerX, core.centerY, glowRadius, 0, 2 * Math.PI);
         ctx.fill();
 
-        // Crisp orange ring
         ctx.strokeStyle = `rgba(255, 160, 0, ${pulse.toFixed(2)})`;
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.arc(core.centerX, core.centerY, 6.5, 0, Math.PI * 2);
         ctx.stroke();
 
-        // Black core on top
         ctx.fillStyle = 'black';
         ctx.beginPath();
         ctx.arc(core.centerX, core.centerY, 5.5, 0, 2 * Math.PI);
@@ -159,7 +148,7 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationRef.current);
     };
-  }, [showGalaxy]); // Add showGalaxy to dependency array
+  }, [showGalaxy]);
 
   return <canvas ref={canvasRef} className="star-field-background" />;
 };

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './TopNavBar.css';
 
 const navItems = [
@@ -24,12 +23,7 @@ const TopNavBar = ({ onSelect, activeSection, onClose }) => {
             {item.label}
           </li>
         ))}
-
-        {/* always render the center star */}
-        <li className="nav-center-icon" onClick={onClose}>
-          ✦
-        </li>
-
+        <li className="nav-center-icon" onClick={onClose}> ✦ </li>
         {rightItems.map(item => (
           <li
             key={item.id}

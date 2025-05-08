@@ -9,7 +9,6 @@
   pointer-events: auto;
 }
 
-/* This class is added dynamically through JS */
 .constellation-navigation.hovering {
   cursor: pointer;
 }
