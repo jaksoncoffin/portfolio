@@ -310,6 +310,12 @@
   flex-shrink: 0;
 }
 
+.icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
 .contact-info {
   display: flex;
   flex-direction: column;

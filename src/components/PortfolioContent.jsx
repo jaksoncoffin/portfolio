@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
+import linkedinIcon from '../../public/InBug-White.png'
+import githubIcon from '../../public/github-mark-white.png';
 import './PortfolioContent.css';
 
 const PortfolioContent = ({
@@ -171,14 +173,18 @@ const PortfolioContent = ({
             </div>
           </a>
           <a href="https://www.linkedin.com/in/jakson-coffin" className="contact-item" target="_blank" rel="noopener noreferrer">
-            <div className="contact-icon">💼</div>
+            <div className="contact-icon">
+              <img src={linkedinIcon} alt="LinkedIn" className="icon-img" />
+            </div>
             <div className="contact-info">
               <h3>LinkedIn</h3>
               <p>www.linkedin.com/in/jakson-coffin</p>
             </div>
           </a>
           <a href="https://github.com/jaksoncoffin" className="contact-item" target="_blank" rel="noopener noreferrer">
-            <div className="contact-icon">🐙</div>
+            <div className="contact-icon">
+              <img src={githubIcon} alt="GitHub" className="icon-img" />
+            </div>
             <div className="contact-info">
               <h3>GitHub</h3>
               <p>github.com/jaksoncoffin</p>
