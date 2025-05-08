@@ -34,31 +34,65 @@ const ConstellationNavigation = ({ onSectionSelect, activeSection }) => {
         id: 'projects',
         name: 'Projects',
         stars: [
-          { x: 0.70, y: 0.23 }, { x: 0.80, y: 0.23 }, { x: 0.80, y: 0.33 }, { x: 0.70, y: 0.33 },
-          { x: 0.75, y: 0.34 }, { x: 0.75, y: 0.37 }, { x: 0.72, y: 0.37 }, { x: 0.78, y: 0.37 },
-          { x: 0.72, y: 0.25 }, { x: 0.78, y: 0.25 }, { x: 0.72, y: 0.27 }, { x: 0.77, y: 0.27 },
-          { x: 0.72, y: 0.29 }, { x: 0.78, y: 0.29 }, { x: 0.72, y: 0.31 }, { x: 0.75, y: 0.31 },
-          { x: 0.72, y: 0.24 }, { x: 0.78, y: 0.24 }, { x: 0.72, y: 0.24 }, { x: 0.72, y: 0.31 }
+          // monitor outline (shifted 0.02 left)
+          { x: 0.68, y: 0.23 }, // 0
+          { x: 0.78, y: 0.23 }, // 1
+          { x: 0.78, y: 0.33 }, // 2
+          { x: 0.68, y: 0.33 }, // 3
+
+          // stand
+          { x: 0.73, y: 0.34 }, // 4
+          { x: 0.73, y: 0.37 }, // 5
+          { x: 0.70, y: 0.37 }, // 6
+          { x: 0.76, y: 0.37 }, // 7
+
+          // three screen lines
+          { x: 0.70, y: 0.255 }, // 8
+          { x: 0.76, y: 0.255 }, // 9
+          { x: 0.70, y: 0.280 }, // 10
+          { x: 0.76, y: 0.280 }, // 11
+          { x: 0.70, y: 0.305 }, // 12
+          { x: 0.76, y: 0.305 }  // 13
         ],
         connections: [
-          [0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 5],
-          [3, 4], [2, 4], [8, 9], [10, 11], [12, 13], [14, 15], [16, 17], [18, 19]
+          [0, 1], [1, 2], [2, 3], [3, 0],
+          [3, 4], [2, 4],
+          [4, 5], [5, 6], [6, 7], [7, 5],
+          [8, 9], [10, 11], [12, 13]
         ],
-        labelPosition: { x: 0.75, y: 0.20 }
+        labelPosition: { x: 0.73, y: 0.20 }
       },
       {
         id: 'resume',
         name: 'Resume',
         stars: [
-          { x: 0.31, y: 0.70 }, { x: 0.41, y: 0.70 }, { x: 0.41, y: 0.90 }, { x: 0.31, y: 0.90 },
-          { x: 0.33, y: 0.73 }, { x: 0.39, y: 0.73 }, { x: 0.33, y: 0.76 }, { x: 0.38, y: 0.76 },
-          { x: 0.33, y: 0.82 }, { x: 0.38, y: 0.82 }, { x: 0.33, y: 0.78 }, { x: 0.39, y: 0.78 },
-          { x: 0.34, y: 0.79 }, { x: 0.38, y: 0.79 }, { x: 0.33, y: 0.84 }, { x: 0.39, y: 0.84 },
-          { x: 0.34, y: 0.85 }, { x: 0.38, y: 0.85 }, { x: 0.33, y: 0.87 }, { x: 0.36, y: 0.87 }
+          // paper outline
+          { x: 0.31, y: 0.70 }, // 0
+          { x: 0.41, y: 0.70 }, // 1
+          { x: 0.41, y: 0.90 }, // 2
+          { x: 0.31, y: 0.90 }, // 3
+
+          // five text lines, spaced by 0.0333 within 0.70–0.90
+          { x: 0.33, y: 0.7333 }, // 4
+          { x: 0.39, y: 0.7333 }, // 5
+
+          { x: 0.33, y: 0.7667 }, // 6
+          { x: 0.39, y: 0.7667 }, // 7
+
+          { x: 0.33, y: 0.8000 }, // 8
+          { x: 0.39, y: 0.8000 }, // 9
+
+          { x: 0.33, y: 0.8333 }, // 10
+          { x: 0.39, y: 0.8333 }, // 11
+
+          { x: 0.33, y: 0.8667 }, // 12
+          { x: 0.39, y: 0.8667 }  // 13
         ],
         connections: [
-          [0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [6, 7], [8, 9],
-          [10, 11], [12, 13], [14, 15], [16, 17], [18, 19], [6, 10], [8, 14]
+          // paper border
+          [0, 1], [1, 2], [2, 3], [3, 0],
+          // each text line
+          [4, 5], [6, 7], [8, 9], [10, 11], [12, 13]
         ],
         labelPosition: { x: 0.36, y: 0.67 }
       },
@@ -66,18 +100,20 @@ const ConstellationNavigation = ({ onSectionSelect, activeSection }) => {
         id: 'contact',
         name: 'Contact',
         stars: [
-          { x: 0.85, y: 0.70 }, { x: 0.95, y: 0.70 }, { x: 0.95, y: 0.80 }, { x: 0.85, y: 0.80 },
-          { x: 0.90, y: 0.65 }, { x: 0.85, y: 0.70 }, { x: 0.95, y: 0.70 }, { x: 0.90, y: 0.75 },
-          { x: 0.85, y: 0.70 }, { x: 0.95, y: 0.70 }, { x: 0.95, y: 0.80 }, { x: 0.85, y: 0.80 },
-          { x: 0.90, y: 0.75 }, { x: 0.92, y: 0.75 }, { x: 0.92, y: 0.73 }, { x: 0.90, y: 0.73 },
-          { x: 0.88, y: 0.75 }, { x: 0.90, y: 0.77 }
+          // envelope outline (shifted 0.02 left)
+          { x: 0.83, y: 0.70 }, // 0
+          { x: 0.93, y: 0.70 }, // 1
+          { x: 0.93, y: 0.80 }, // 2
+          { x: 0.83, y: 0.80 }, // 3
+
+          // flap apex
+          { x: 0.88, y: 0.75 }  // 4
         ],
         connections: [
-          [0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [4, 6],
-          [0, 7], [1, 7], [2, 7], [3, 7],
-          [13, 14], [14, 15], [15, 16], [16, 17], [17, 13], [13, 14]
+          [0, 1], [1, 2], [2, 3], [3, 0],
+          [0, 4], [1, 4]
         ],
-        labelPosition: { x: 0.90, y: 0.62 }
+        labelPosition: { x: 0.88, y: 0.67 }
       }
     ];
 
@@ -132,12 +168,38 @@ const ConstellationNavigation = ({ onSectionSelect, activeSection }) => {
         });
 
         ctx.strokeStyle = isActive
-          ? 'rgba(100, 200, 255, 0.6)'
+          ? 'rgba(100, 200, 255, 0.9)'
           : constellation.hovered
-            ? 'rgba(100, 150, 255, 0.4)'
-            : 'rgba(100, 100, 255, 0.2)';
-        ctx.lineWidth = isActive ? 2 : constellation.hovered ? 1.5 : 1;
+            ? 'rgba(100, 150, 255, 0.7)'
+            : 'rgba(100, 100, 255, 0.4)';
+        ctx.lineWidth = isActive ? 2.5 : constellation.hovered ? 2 : 1.2;
         ctx.stroke();
+
+        const { x, y } = constellation.labelPosition;
+
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        const labelGlow = isActive || constellation.hovered;
+        const fontSize = labelGlow ? 20 : 20;
+        ctx.font = `${labelGlow ? '600' : '400'} ${fontSize}px SpaceFont, Arial`;
+
+        // Glow shadow
+        if (labelGlow) {
+          ctx.save();
+          ctx.shadowColor = 'rgba(120, 220, 255, 0.8)';
+          ctx.shadowBlur = 10;
+          ctx.fillStyle = 'rgba(200, 240, 255, 1)';
+          ctx.fillText(constellation.name, x, y);
+          ctx.restore();
+        } else {
+          // Subtle background offset
+          ctx.fillStyle = 'rgba(0, 0, 40, 0.8)';
+          ctx.fillText(constellation.name, x + 2, y + 2);
+          ctx.fillStyle = 'rgba(180, 210, 255, 0.7)';
+          ctx.fillText(constellation.name, x, y);
+        }
+
 
         // Draw stars
         constellation.stars.forEach(star => {
@@ -170,19 +232,6 @@ const ConstellationNavigation = ({ onSectionSelect, activeSection }) => {
             ctx.fill();
           }
         });
-
-        if (isActive || constellation.hovered) {
-          const { x, y } = constellation.labelPosition;
-          ctx.font = `${isActive ? 'bold ' : ''}20px SpaceFont, Arial`;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-
-          ctx.fillStyle = 'rgba(0, 0, 40, 0.8)';
-          ctx.fillText(constellation.name, x + 2, y + 2);
-
-          ctx.fillStyle = isActive ? 'rgba(200, 240, 255, 1)' : 'rgba(180, 210, 255, 0.9)';
-          ctx.fillText(constellation.name, x, y);
-        }
       });
 
       animationRef.current = requestAnimationFrame(animate);

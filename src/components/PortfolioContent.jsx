@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import './PortfolioContent.css';
 
-const PortfolioContent = ({ activeSection, onClose }) => {
+const PortfolioContent = ({
+  activeSection,
+  onClose,
+  showWelcome,
+  setShowWelcome
+}) => {
   const [visible, setVisible] = useState(false);
   const [content, setContent] = useState(null);
-  const [showWelcome, setShowWelcome] = useState(true);
   const contentRef = useRef(null);
 
   const sectionContent = {
@@ -204,21 +208,24 @@ const PortfolioContent = ({ activeSection, onClose }) => {
     }
   }, [activeSection]);
 
+  // reset scroll on each open
   useEffect(() => {
     if (contentRef.current) {
-      const sectionContent = contentRef.current.querySelector('.section-content');
-      if (sectionContent) {
-        sectionContent.scrollTop = 0;
-      }
+      const sc = contentRef.current.querySelector('.section-content');
+      if (sc) sc.scrollTop = 0;
     }
   }, [activeSection]);
 
+  // dismiss welcome on first click anywhere
   useEffect(() => {
-    const handleClick = () => setShowWelcome(false);
+    const handleClick = () => {
+      if (showWelcome) setShowWelcome(false);
+    };
     window.addEventListener('click', handleClick);
     return () => window.removeEventListener('click', handleClick);
-  }, []);
+  }, [showWelcome, setShowWelcome]);
 
+  // block constellation clicks & blur while welcome
   useEffect(() => {
     document.body.classList.toggle('block-constellations', showWelcome);
   }, [showWelcome]);
@@ -226,7 +233,7 @@ const PortfolioContent = ({ activeSection, onClose }) => {
   return (
     <>
       {showWelcome && (
-        <div className={`welcome-overlay ${!showWelcome ? 'fade-out' : ''}`}>
+        <div className="welcome-overlay">
           <div className="welcome-message">
             <h2>Welcome to my Cosmic Portfolio</h2>
             <p>Click on the glowing constellations scattered around the stars to explore each section.</p>
@@ -239,7 +246,11 @@ const PortfolioContent = ({ activeSection, onClose }) => {
         {activeSection && visible && (
           <div className="content-wrapper" ref={contentRef}>
             <div className="section-content">
-              <button className="close-button cosmic-close" onClick={onClose} aria-label="Close section">
+              <button
+                className="close-button cosmic-close"
+                onClick={onClose}
+                aria-label="Close section"
+              >
                 <span className="star-x">✦</span>
               </button>
               {content}

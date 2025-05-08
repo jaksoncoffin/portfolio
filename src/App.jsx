@@ -1,8 +1,10 @@
+// App.jsx
 import { useState, useEffect } from 'react';
 import StarFieldBackground from './components/StarFieldBackground';
 import StarFieldLoader from './components/StarFieldLoader';
 import ConstellationNavigation from './components/ConstellationNavigation';
 import PortfolioContent from './components/PortfolioContent';
+import TopNavBar from './components/TopNavBar';
 import './App.css';
 
 function App() {
@@ -14,25 +16,14 @@ function App() {
   const [showMainContent, setShowMainContent] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
   const [showGalaxy, setShowGalaxy] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
 
   useEffect(() => {
     if (loading) {
-      const startWelcomeTimer = setTimeout(() => {
-        setWelcomeFormed(true);
-      }, 500);
-
-      const welcomeCompleteTimer = setTimeout(() => {
-        setWelcomeComplete(true);
-      }, 1700);
-
-      const blackHoleTimer = setTimeout(() => {
-        setBlackHoleActive(true);
-      }, 3000);
-
-      const transitionTimer = setTimeout(() => {
-        setTransition(true);
-      }, 5500);
-
+      const startWelcomeTimer = setTimeout(() => setWelcomeFormed(true), 500);
+      const welcomeCompleteTimer = setTimeout(() => setWelcomeComplete(true), 1700);
+      const blackHoleTimer = setTimeout(() => setBlackHoleActive(true), 3000);
+      const transitionTimer = setTimeout(() => setTransition(true), 5500);
       const mainContentTimer = setTimeout(() => {
         setLoading(false);
         setShowMainContent(true);
@@ -48,24 +39,15 @@ function App() {
     }
   }, [loading]);
 
-  // Delay showing the galaxy after constellations appear
   useEffect(() => {
     if (showMainContent) {
-      const galaxyTimer = setTimeout(() => {
-        setShowGalaxy(true);
-      }); // Show galaxy 2 seconds after main content appears
-
+      const galaxyTimer = setTimeout(() => setShowGalaxy(true));
       return () => clearTimeout(galaxyTimer);
     }
   }, [showMainContent]);
 
-  const handleSectionSelect = (sectionId) => {
-    setActiveSection(sectionId);
-  };
-
-  const handleCloseSection = () => {
-    setActiveSection(null);
-  };
+  const handleSectionSelect = id => setActiveSection(id);
+  const handleCloseSection = () => setActiveSection(null);
 
   return (
     <div className="app-container">
@@ -80,16 +62,29 @@ function App() {
           />
         </div>
       )}
+
       {!loading && (
         <div className="main-content">
           <StarFieldBackground showGalaxy={showGalaxy} />
+
+          {/* only show nav once welcome is gone */}
+          {!showWelcome && (
+            <TopNavBar
+              onSelect={handleSectionSelect}
+              activeSection={activeSection}
+            />
+          )}
+
           <ConstellationNavigation
             onSectionSelect={handleSectionSelect}
             activeSection={activeSection}
           />
+
           <PortfolioContent
             activeSection={activeSection}
             onClose={handleCloseSection}
+            showWelcome={showWelcome}
+            setShowWelcome={setShowWelcome}
           />
         </div>
       )}
