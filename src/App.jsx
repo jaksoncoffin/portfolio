@@ -1,4 +1,3 @@
-// App.jsx
 import { useState, useEffect } from 'react';
 import StarFieldBackground from './components/StarFieldBackground';
 import StarFieldLoader from './components/StarFieldLoader';
