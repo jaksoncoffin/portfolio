@@ -1,12 +1,59 @@
-# React + Vite
+# Jakson Coffin — Personal Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the source code for my personal portfolio website, built with **React** and **Vite**. The site features interactive constellation-based navigation, dynamic animations, and a custom cosmic-themed UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+- **Interactive Constellations**: Click glowing star constellations to explore each section.
+- **Animated Starfield & Black Hole**: Canvas-powered animations draw you into the experience.
+- **Responsive Design**: Adapts smoothly to desktop and mobile viewports.
+- **Contact Form**: Send me a message via Formspree integration.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Features
+
+- **About Me**: Learn about my background, education, and passions.
+- **Projects**: See my work on reinforcement learning agents, esports analytics, and more.
+- **Resume**: Download a full PDF or view key highlights inline.
+- **Contact**: Reach out via email, LinkedIn, or GitHub.
+
+---
+
+## Tech Stack
+
+- **React** – Component-based UI  
+- **Vite** – Dev server & build tool with HMR  
+- **Canvas API** – Custom starfield, nebula, and black hole animations  
+- **Formspree** – Serverless contact form handling  
+- **ESLint** – Linting for code quality  
+- **Plain CSS** – Hand-crafted styles, no CSS frameworks
+
+---
+
+## Project Structure
+
+├── public/
+│   ├── assets/           # images, fonts, icons
+│   └── resume.pdf        # downloadable resume
+├── src/
+│   ├── components/
+│   │   ├── ConstellationNavigation.jsx
+|   |   ├── ConstellationNavigation.css
+│   │   ├── PortfolioContent.jsx
+│   │   ├── PortfolioContent.css
+│   │   ├── StarFieldBackground.jsx
+│   │   ├── StarFieldBackground.css
+│   │   ├── StarFieldLoader.jsx
+│   │   ├── StarFieldLoader.css
+│   │   └── TopNavBar.jsx
+│   │   └── TopNavBar.css
+│   ├── App.jsx
+│   ├── App.css
+│   ├── main.jsx
+│   └── index.css
+├── .eslintrc.js
+├── package.json
+└── README.md
