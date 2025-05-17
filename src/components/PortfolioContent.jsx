@@ -39,14 +39,20 @@ const PortfolioContent = ({
     about: (
       <>
         <h2>About Me</h2>
-        <p>Hello! My name is Jakson Coffin. I graduated from the University of Minnesota Twin Cities in May 2025
-          (Bachelor of Science - Computer Science). I often utilize my passion for astronomy and physics to create</p>
-
-        <p>I specialize in frontend development with React, creating responsive and interactive web applications
-          that captivate users and provide seamless experiences across all devices.</p>
-
-        <p>When I'm not coding, you'll find me stargazing, exploring new technologies, or contributing to
-          open-source projects that make the web more accessible and engaging.</p>
+        <p>
+          Hello! I'm Jakson. I studied computer science at the University of Minnesota and have been diving deep into machine learning
+          and AI lately, but I’m interested in just about anything within the broader CS world; whether that’s data science,
+          software engineering, or something in between.
+        </p>
+        <p>
+          When I’m not coding, I’m usually outside. I like golfing, hiking, snowboarding, fishing, and trying to stay on the wall while
+          rock climbing. Music is a big part of my life, and I’m often listening to something new or playing the piano. I also enjoy
+          thrifting and keeping up with esports (watching and playing). I tend to gravitate toward things that are creative, hands-on,
+          or a little competitive.
+        </p>
+        <p>
+          This website is a mix of things I've worked on and things I care about. Thanks for stopping by!
+        </p>
       </>
     ),
     projects: (

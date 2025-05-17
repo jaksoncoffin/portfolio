@@ -5,6 +5,7 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
   const canvasRef = useRef(null);
   const starsRef = useRef([]);
   const galaxyStarsRef = useRef([]);
+  const mouseOffset = useRef({ x: 0, y: 0 });
   const animationRef = useRef(null);
 
   useEffect(() => {
@@ -17,6 +18,16 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
       initBackgroundStars();
       initGalaxy();
     };
+
+    const handleMouseMove = (e) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      mouseOffset.current = {
+        x: (e.clientX - centerX) * 0.02,
+        y: (e.clientY - centerY) * 0.02,
+      };
+    };
+    window.addEventListener('mousemove', handleMouseMove);
 
     const initBackgroundStars = () => {
       const count = Math.floor((canvas.width * canvas.height) / 25000);
@@ -62,7 +73,7 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
           flattenY,
           speed,
           size: Math.random() * 1.2 + 0.3,
-          color,
+          color
         });
       }
     };
@@ -81,7 +92,7 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
 
         ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.arc(star.x + mouseOffset.current.x, star.y + mouseOffset.current.y, star.size, 0, Math.PI * 2);
         ctx.fill();
       });
 
@@ -147,6 +158,7 @@ const StarFieldBackground = ({ showGalaxy = false }) => {
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationRef.current);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, [showGalaxy]);
 
