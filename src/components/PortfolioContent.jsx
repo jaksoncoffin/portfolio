@@ -59,16 +59,21 @@ const PortfolioContent = ({
       <>
         <h2>Projects</h2>
         <div className="project-grid">
-          <div className="project-card">
+          <a
+            href="https://drive.google.com/file/d/1Yn1DRqy9_5ekyvall0S1gveM9MBbbV3l/view"
+            target="_blank"
+            rel="noopener norefferer"
+            className="project-card link"
+          >
             <h3>Rocket League Reinforcement Learning Agents</h3>
             <p>Engineered and trained high-performance RL agents using PPO with custom reward shaping and Weights & Biases for experiment tracking, achieving consistent in-game performance over 1B+ training steps.</p>
             <div className="project-tech">Python · PPO · OpenAI Gym · Weights & Biases</div>
-          </div>
+          </a>
           <a
             href="https://colab.research.google.com/drive/1uLKQp4X_9jMWgy-BXRwt2HmUs-foO-rl"
             target="_blank"
             rel="noopener noreferrer"
-            className="project-card no-link-style"
+            className="project-card link"
           >
             <h3>Esports Player Performance Prediction</h3>
             <p>
@@ -76,11 +81,16 @@ const PortfolioContent = ({
             </p>
             <div className="project-tech">Python · Scikit-learn · Ballchasing API · Data Viz</div>
           </a>
-          <div className="project-card">
-            <h3>Scrimbot - Esports Discord Bot</h3>
-            <p>Developed a Discord bot used by 35K+ collegiate players for real-time scrim scheduling via Discord Gateway API with SQL optimization and enhanced command UX using Markdown formatting.</p>
+          <a
+            href="https://github.com/MDixey17/scrimbot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card link"
+          >
+            <h3>Scrimbot – Esports Discord Bot</h3>
+            <p>Developed a Discord bot used by 35,000 collegiate players for real-time scrim scheduling via Discord Gateway API with SQL optimization and enhanced command UX using Markdown formatting.</p>
             <div className="project-tech">JavaScript · Discord API · SQL · WebSockets</div>
-          </div>
+          </a>
         </div>
       </>
     ),

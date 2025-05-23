@@ -614,13 +614,13 @@
   }
 }
 
-a.project-card.no-link-style {
+a.project-card.link {
   text-decoration: none;
   color: inherit;
   display: block;
 }
 
-a.project-card.no-link-style:hover {
+a.project-card.link:hover {
   cursor: pointer;
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(100, 180, 255, 0.3);
