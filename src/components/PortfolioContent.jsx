@@ -113,7 +113,7 @@ const PortfolioContent = ({
             <h4>B.S. in Computer Science</h4>
             <div className="education-details">
               <span className="education-institution">University of Minnesota, College of Science and Engineering</span>
-              <span className="education-date">Expected May 2025 · GPA: 3.6</span>
+              <span className="education-date">May 2025</span>
             </div>
             <p>Relevant Coursework: Machine Learning, Artificial Intelligence, Data Science, Software Engineering, Data Structures and Algorithms, Computer Architecture</p>
           </div>
