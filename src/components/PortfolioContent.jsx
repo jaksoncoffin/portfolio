@@ -64,11 +64,18 @@ const PortfolioContent = ({
             <p>Engineered and trained high-performance RL agents using PPO with custom reward shaping and Weights & Biases for experiment tracking, achieving consistent in-game performance over 1B+ training steps.</p>
             <div className="project-tech">Python · PPO · OpenAI Gym · Weights & Biases</div>
           </div>
-          <div className="project-card">
+          <a
+            href="https://colab.research.google.com/drive/1uLKQp4X_9jMWgy-BXRwt2HmUs-foO-rl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card no-link-style"
+          >
             <h3>Esports Player Performance Prediction</h3>
-            <p>Created a replay ingestion and analysis system using the Ballchasing API, enabling SVM, Logistic Regression, and Random Forest models to evaluate gameplay and support pro-level scouting and strategy.</p>
+            <p>
+              Created a replay ingestion and analysis system using the Ballchasing API, enabling SVM, Logistic Regression, and Random Forest models to evaluate gameplay and support pro-level scouting and strategy.
+            </p>
             <div className="project-tech">Python · Scikit-learn · Ballchasing API · Data Viz</div>
-          </div>
+          </a>
           <div className="project-card">
             <h3>Scrimbot - Esports Discord Bot</h3>
             <p>Developed a Discord bot used by 35K+ collegiate players for real-time scrim scheduling via Discord Gateway API with SQL optimization and enhanced command UX using Markdown formatting.</p>

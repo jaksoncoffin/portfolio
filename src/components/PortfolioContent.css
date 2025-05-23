@@ -613,3 +613,16 @@
     transform: scale(1);
   }
 }
+
+a.project-card.no-link-style {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+a.project-card.no-link-style:hover {
+  cursor: pointer;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(100, 180, 255, 0.3);
+  border-color: rgba(100, 180, 255, 0.5);
+}
