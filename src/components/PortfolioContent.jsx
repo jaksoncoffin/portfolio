@@ -91,6 +91,33 @@ const PortfolioContent = ({
             <p>Developed a Discord bot used by 35,000 collegiate players for real-time scrim scheduling via Discord Gateway API with SQL optimization and enhanced command UX using Markdown formatting.</p>
             <div className="project-tech">JavaScript · Discord API · SQL · WebSockets</div>
           </a>
+          <a
+            href="https://cpargy.itch.io/discovering-the-unkown"
+            target="_blank"
+            rel="noopener norefferer"
+            className="project-card link"
+          >
+            <h3>Otter Game Jam - Discovering the Unknown</h3>
+            <p>Co-developed the concept, led the art direction, and contributed to gameplay programming in Unity for a game created to raise awareness about the Monterey Canyon and highlight concerns around climate change and the impact of human activity on fragile marine environments.</p>
+            <div className="project-tech">Unity · C# · Photoshop · Git</div>
+          </a>
+          <div className="project-card">
+            <h3>Autonomous Drone Transit Simulator</h3>
+            <p>Developed a C++ based simulation with a web interface for managing autonomous drones for deliveries in an urban environment. Containerized using Docker for modular testing and deployment.</p>
+            <p className="note">(Demo available on request)</p>
+            <div className="project-tech">C++ · Docker · Agile · Software Design Patterns</div>
+          </div>
+          <a
+            href="https://github.com/jaksoncoffin/sportscheduler"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card link"
+          >
+            <h3>SPORTS – Scheduling Platform</h3>
+            <p>Collaborated on a modular scheduling system to manage community sports leagues, featuring automatic conflict detection, schedule generation, and rescheduling support. Developed in an Agile team using design principles like modularity and separation of concerns.</p>
+            <div className="project-tech">Java · Unit Tests · Agile · Software Architecture</div>
+          </a>
+
         </div>
       </>
     ),
